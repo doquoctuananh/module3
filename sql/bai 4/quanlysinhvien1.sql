@@ -17,5 +17,6 @@ where s.studentid in (
 select stem.studentid from (
 select s.studentid ,avg(m.mark) from student as s
 join mark as m on m.studentid = s.studentid
-group by s.studentid ) as stem
+group by s.studentid 
+order by avg(m.mark) desc ) as stem
 );
