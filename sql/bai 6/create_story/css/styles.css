@@ -1,0 +1,11 @@
+a{
+    text-decoration: none;
+    color: #362727;
+    font-size: 18px;
+}
+
+a:hover{
+    color: blueviolet;
+    
+}
+
