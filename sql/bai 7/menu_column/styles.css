@@ -1,0 +1,55 @@
+*{
+    box-sizing: border-box;
+}
+
+h1{
+    text-transform: uppercase;
+}
+
+.list_sem,.item_sem-detail{
+    list-style: none;
+    padding-left: 0;
+}
+.item_sem{
+    position: relative;
+}
+
+.item_sem-detail{
+    position: absolute;
+    top:0;
+    left: 142px;
+    visibility: hidden;
+}
+
+.item_sem-detail::before{
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 30px;
+    height: 40px;
+    opacity: 0;
+}
+
+.item_sem,.item_detail{
+    width: 140px;
+    background-color: black;
+    color: aliceblue;
+    padding: 10px;
+    cursor: pointer;
+    
+}
+
+.item_detail:hover{
+    background-color: burlywood;
+}
+
+.item_sem:hover .item_sem-detail{
+    visibility: visible;
+
+}
+
+.item_sem:hover{
+    background-color: red;
+}

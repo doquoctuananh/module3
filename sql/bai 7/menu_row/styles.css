@@ -1,0 +1,63 @@
+*{
+    box-sizing: border-box;
+}
+
+#menu{
+    background-color: black;
+    color: aliceblue;
+}
+
+.list,.list-sem{
+    list-style: none;
+}
+
+.list_item{
+    display: inline-block;
+    padding: 15px 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.list_item:hover {
+    background-color: blueviolet;
+}
+
+.list_item:hover .list-sem{
+    display: block;
+}
+
+.list-sem{
+    position: absolute;
+    min-width: 220px;
+    padding-left: 0;
+    background-color: black;
+    top: 50px;
+    display: none;
+}
+
+.list-sem::before{
+    display: block;
+    position: absolute;
+    content: "";
+    width: 60px;
+    height: 20px;
+    top: -10px;
+    left: -8px;
+    opacity: 0;
+}
+
+.list_item-sem{
+    width: 100%;
+    padding: 10px 15px;
+}
+
+.list_item-sem:hover{
+    background-color: yellowgreen;
+}
+
+.list-sem a{
+    text-decoration: none;
+    color: antiquewhite;
+    display: block;
+    width: 100%;
+}
