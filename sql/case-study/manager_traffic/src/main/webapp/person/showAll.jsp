@@ -45,7 +45,7 @@
             <th>Phone</th>
             <th>ID_Province</th>
             <th>Update</th>
-            <th>Delete</th>
+<%--            <th>Delete</th>--%>
         </tr>
         </thead>
         <tbody>
@@ -68,14 +68,14 @@
                         <input type="hidden" name = "id" value="${person.getId()}">
                     </form>
                 </td>
-                <td>
-                    <form action="/person" method="get">
-                        <button class="btn btn-danger" name="action" value="deletePerson">
-                            Delete
-                        </button>
-                        <input type="hidden" name = "id" value="${person.getId()}">
-                    </form>
-                </td>
+<%--                <td>--%>
+<%--                    <form action="/person" method="get">--%>
+<%--                        <button class="btn btn-danger" name="action" value="deletePerson">--%>
+<%--                            Delete--%>
+<%--                        </button>--%>
+<%--                        <input type="hidden" name = "id" value="${person.getId()}">--%>
+<%--                    </form>--%>
+<%--                </td>--%>
             </tr>
         </c:forEach>
         </tbody>

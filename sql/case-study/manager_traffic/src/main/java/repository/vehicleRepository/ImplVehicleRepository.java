@@ -29,6 +29,10 @@ public class ImplVehicleRepository implements IVehicleRepository {
     private static String sqlDeleteAll = "delete from vehicle where id =?";
     private static String sqlViewCar = "select v.*,c.numberSeats from vehicle as v join car as c on v.id = c.id where v.id = ?";
     private static String sqlViewMotor = "select v.*,m.speed from vehicle as v join motorbike as m on v.id = m.id where v.id = ?";
+
+    private static String sqlSearchType = "select * from vehicle where typeVehicle = ?";
+    private static String sqlSearchColor = "select * from vehicle where color like ?";
+    private static String sqlSearch = "select* from vehicle where typeVehicle = ? and color like ?";
     @Override
     public Vehicle findById(int id) {
         Vehicle vehicle = null;
@@ -221,17 +225,75 @@ public class ImplVehicleRepository implements IVehicleRepository {
 
     @Override
     public List<Vehicle> searchVehicle(String color,String typeVehicle) {
-        List<Vehicle> vehicles = showAllVehicles();
+
         List<Vehicle> filterVehicle = new ArrayList<>();
-        if(typeVehicle.equals("showAll")){
-            filterVehicle.addAll(vehicles);
+        if(((typeVehicle.equals("Car") || typeVehicle.equals("Motorbike")) && (color == null || color.equals("")))){
+            try(Connection conn = baseRepository.getConnection();
+            PreparedStatement ppsm = conn.prepareStatement(sqlSearchType)
+            ){
+                ppsm.setString(1,typeVehicle);
+                ResultSet rs =ppsm.executeQuery();
+                while(rs.next()){
+                    int id = rs.getInt("id");
+                    String manafacture = rs.getString("manafacture");
+                    LocalDate yearManafactured = LocalDate.parse(rs.getString("yearManafactured"));
+                    double price = rs.getDouble("price");
+                    String _color = rs.getString("color");
+                    int id_province = rs.getInt("id_province");
+                    int id_person = rs.getInt("id_person");
+                    String _typeVehicle = rs.getString("typeVehicle");
+                    filterVehicle.add(new Vehicle(id,manafacture,_color,price,yearManafactured,
+                            id_province,id_person,_typeVehicle));
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        else if((typeVehicle.equals("") || typeVehicle == null)&& (color != null && !color.equals(""))){
+            try(Connection conn = baseRepository.getConnection();
+            PreparedStatement ppsm = conn.prepareStatement(sqlSearchColor)){
+                ppsm.setString(1,color);
+                ResultSet rs = ppsm.executeQuery();
+                while(rs.next()){
+                    int id = rs.getInt("id");
+                    String manafacture = rs.getString("manafacture");
+                    LocalDate yearManafactured = LocalDate.parse(rs.getString("yearManafactured"));
+                    double price = rs.getDouble("price");
+                    String _color = rs.getString("color");
+                    int id_province = rs.getInt("id_province");
+                    int id_person = rs.getInt("id_person");
+                    String _typeVehicle = rs.getString("typeVehicle");
+                    filterVehicle.add(new Vehicle(id,manafacture,_color,price,yearManafactured,
+                            id_province,id_person,_typeVehicle));
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        else if (typeVehicle != null && !typeVehicle.equals("") && color != null && !color.equals("")){
+            try(Connection conn = baseRepository.getConnection();
+            PreparedStatement ppsm = conn.prepareStatement(sqlSearch)){
+                ppsm.setString(1,typeVehicle);
+                ppsm.setString(2,color);
+                ResultSet rs = ppsm.executeQuery();
+                while(rs.next()){
+                    int id = rs.getInt("id");
+                    String manafacture = rs.getString("manafacture");
+                    LocalDate yearManafactured = LocalDate.parse(rs.getString("yearManafactured"));
+                    double price = rs.getDouble("price");
+                    String _color = rs.getString("color");
+                    int id_province = rs.getInt("id_province");
+                    int id_person = rs.getInt("id_person");
+                    String _typeVehicle = rs.getString("typeVehicle");
+                    filterVehicle.add(new Vehicle(id,manafacture,_color,price,yearManafactured,
+                            id_province,id_person,_typeVehicle));
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
         }
         else{
-            for (int i = 0; i < vehicles.size(); i++) {
-                if(vehicles.get(i).getColor().equals(color) && vehicles.get(i).getTypeVehicle().equals(typeVehicle)){
-                    filterVehicle.add(vehicles.get(i));
-                }
-            }
+            filterVehicle.addAll(showAllVehicles());
         }
 
         return filterVehicle;

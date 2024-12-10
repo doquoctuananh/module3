@@ -53,7 +53,7 @@
                 <option value="">Choose Vehicle</option>
                 <option value="Car">Car</option>
                 <option value="Motorbike">Motorbike</option>
-                <option value="showAll">ShowAll</option>
+<%--                <option value="showAll">ShowAll</option>--%>
             </select>
             <select name="color">
                 <option value="">Filter color</option>

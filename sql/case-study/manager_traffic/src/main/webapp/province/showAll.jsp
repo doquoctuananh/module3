@@ -40,7 +40,7 @@
             <th>Code</th>
             <th>Name</th>
             <th>Update</th>
-            <th>Delete</th>
+<%--            <th>Delete</th>--%>
         </tr>
         </thead>
         <tbody>
@@ -58,14 +58,14 @@
                         <input type="hidden" name = "id" value="${province.getCode()}">
                     </form>
                 </td>
-                <td>
-                    <form action="/province" method="get">
-                        <button class="btn btn-danger" name="action" value="deleteProvince">
-                            Delete
-                        </button>
-                        <input type="hidden" name = "id" value="${province.getCode()}">
-                    </form>
-                </td>
+<%--                <td>--%>
+<%--                    <form action="/province" method="get">--%>
+<%--                        <button class="btn btn-danger" name="action" value="deleteProvince">--%>
+<%--                            Delete--%>
+<%--                        </button>--%>
+<%--                        <input type="hidden" name = "id" value="${province.getCode()}">--%>
+<%--                    </form>--%>
+<%--                </td>--%>
             </tr>
         </c:forEach>
         </tbody>

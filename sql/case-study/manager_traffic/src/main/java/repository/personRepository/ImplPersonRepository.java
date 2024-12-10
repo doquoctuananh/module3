@@ -18,7 +18,15 @@ public class ImplPersonRepository implements IPersonRepository{
     private static String sqlCreate = "insert into person(name,address,birthday,phone,email,id_province) \n" +
             "values(?,?,?,?,?,?)";
     private static String sqlUpdate = "update person set name =?,address=?,birthday=?,phone=?,email=?,id_province=? where id=?";
-    private static String sqlDelete = "delete from person where id=?";
+    private static String sqlDeletePerson = "delete from person where id=?";
+
+    private static String sqlDeleteVehicle = "delete from vehicle as v where v.id_person = ? ";
+
+    private static String sqlDeleteCar = "delete from car where id in \n" +
+            "(select v.id from vehicle as v where v.id_person = ?";
+
+    private static String sqlDeleteMotor = "delete from motorbike where id in" +
+            "(select v.id from vehicle as v where v.id_person = ?)";
     @Override
     public Person findPersonById(int id) {
         Person person = null;
@@ -118,11 +126,25 @@ public class ImplPersonRepository implements IPersonRepository{
     public boolean deletePerson(int id) {
         boolean result = false;
         try(Connection conn = baseRepository.getConnection();
-        PreparedStatement ppsm = conn.prepareStatement(sqlDelete)){
-            ppsm.setInt(1,id);
-            int row = ppsm.executeUpdate();
-            if(row==1){
-                result = true;
+        PreparedStatement ppsmCar = conn.prepareStatement(sqlDeleteCar);
+        PreparedStatement ppsmMotor = conn.prepareStatement(sqlDeleteMotor);
+        ){
+            ppsmCar.setInt(1, id);
+            int rowCar = ppsmCar.executeUpdate();
+            ppsmMotor.setInt(1,id);
+            int rowMotor =ppsmMotor.executeUpdate();
+            if(rowCar>0 || rowMotor>0){
+                PreparedStatement ppsmVehicle = conn.prepareStatement(sqlDeleteVehicle);
+                ppsmVehicle.setInt(1, id);
+                int rowVehicle = ppsmVehicle.executeUpdate();
+                if(rowVehicle>0){
+                    PreparedStatement ppsmPerson = conn.prepareStatement(sqlDeletePerson);
+                    ppsmPerson.setInt(1,id);
+                    int row = ppsmPerson.executeUpdate();
+                    if(row>0){
+                        result = true;
+                    }
+                }
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -130,3 +152,4 @@ public class ImplPersonRepository implements IPersonRepository{
         return result;
     }
 }
+

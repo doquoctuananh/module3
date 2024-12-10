@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class BaseRespository {
+
     // cau hinh thong tin mysql
     private String url = "jdbc:mysql://localhost:3307/manager_traffic?useSSL=false";
     private String name = "root";
