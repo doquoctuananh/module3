@@ -5,9 +5,11 @@ import model.Vehicle;
 import java.util.List;
 
 public interface IVehicleService {
-    List<Vehicle> showAllVehicles(String typeVehicle);
+    Vehicle findVehicleById(int id);
+    List<Vehicle> showAllVehicles();
     boolean createVehicle(Vehicle vehicle);
-    boolean updateVehicle(Vehicle vehicle);
+    boolean updateVehicle(Vehicle vehicle,int id);
     boolean deleteVehicle(int id);
-    boolean searchVehicle(double price,String color);
+    List<Vehicle> searchVehicle(String color,String typeVehicle);
+    Vehicle viewDetailVehicle(int id);
 }

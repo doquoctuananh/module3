@@ -10,6 +10,7 @@ public class Vehicle {
     private LocalDate yearManufactured;
     private int IdProvince;
     private int IdPerson;
+    private String typeVehicle;
 
     public Vehicle(int id, String nameVehicle, String color, double price, LocalDate yearManufactured, int idPravince, int idPerson) {
         this.id = id;
@@ -19,6 +20,45 @@ public class Vehicle {
         this.yearManufactured = yearManufactured;
         this.IdProvince = idPravince;
         this.IdPerson = idPerson;
+    }
+
+    public Vehicle( String nameVehicle, String color, double price, LocalDate yearManufactured, int idPravince, int idPerson) {
+
+        this.nameVehicle = nameVehicle;
+        this.color = color;
+        this.price = price;
+        this.yearManufactured = yearManufactured;
+        this.IdProvince = idPravince;
+        this.IdPerson = idPerson;
+    }
+
+    public Vehicle(String nameVehicle, String color, double price, LocalDate yearManufactured,int idProvince, int idPerson, String typeVehicle) {
+        this.nameVehicle = nameVehicle;
+        this.color = color;
+        this.price = price;
+        IdProvince = idProvince;
+        this.yearManufactured = yearManufactured;
+        IdPerson = idPerson;
+        this.typeVehicle = typeVehicle;
+    }
+
+    public Vehicle(int id, String nameVehicle, String color, double price, LocalDate yearManufactured, int idProvince, int idPerson, String typeVehicle) {
+        this.id = id;
+        this.nameVehicle = nameVehicle;
+        this.color = color;
+        this.price = price;
+        this.yearManufactured = yearManufactured;
+        IdProvince = idProvince;
+        IdPerson = idPerson;
+        this.typeVehicle = typeVehicle;
+    }
+
+    public String getTypeVehicle() {
+        return typeVehicle;
+    }
+
+    public void setTypeVehicle(String typeVehicle) {
+        this.typeVehicle = typeVehicle;
     }
 
     public int getId() {
@@ -76,4 +116,6 @@ public class Vehicle {
     public void setIdPerson(int idPerson) {
         IdPerson = idPerson;
     }
+
+
 }

@@ -38,66 +38,101 @@
 </head>
 <body>
 <div class="container">
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filter Vehicle
-            <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-            <li>
-                <form action="vehicle" method="get">
-                        <button class="btnVehicle" name = "typeVehicle" value="Car">
-                            Car
-                        </button>
+    <button class="btn btn-default">
+        <a href="/">Back</a>
+    </button>
+    <form action="/vehicle" method="get">
+        <button class="btn btn-primary" name="action" value="createVehicle">
+            Create Vehicle
+        </button>
+    </form>
+    <form action="vehicle" method="get">
+        <label>Filter Vehicle</label>
+        <div class="dropdown">
+            <select name="typeVehicle">
+                <option value="">Choose Vehicle</option>
+                <option value="Car">Car</option>
+                <option value="Motorbike">Motorbike</option>
+                <option value="showAll">ShowAll</option>
+            </select>
+            <select name="color">
+                <option value="">Filter color</option>
+                <option value="red">red</option>
+                <option value="grey">grey</option>
+                <option value="yellow">yellow</option>
+                <option value="black">black</option>
+                <option value="white">white</option>
+                <option value="blue">blue</option>
+                <option value="brown">brown</option>
+            </select>
+            <button class="btn btn-success" name="action" value="filterVehicle">Fillter</button>
+        </div>
+    </form>
 
-                </form>
-            </li>
-            <li>
-                <form action="vehicle" method="get">
-                    <button class="btnVehicle" name = "typeVehicle" value="Motorbike">
-                        Motorbike
-                    </button>
-                </form>
-            </li>
-            <li>
-                <form action="vehicle" method="get">
-                    <button class="btnVehicle" name = "typeVehicle" value="">
-                        ShowAll
-                    </button>
-                </form>
-            </li>
-        </ul>
-    </div>
 
     <h2>List vehicle</h2>
-
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>STT</th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Color</th>
-            <th>Price</th>
-            <th>YearManufactured</th>
-            <th>Id_Province</th>
-            <th>Id_Person</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${vehicleList}" var="vehicle" varStatus="loop">
+    <c:if test="${vehicleList.size() >0}">
+        <table class="table table-bordered">
+            <thead>
             <tr>
-                <td>${loop.count}</td>
-                <td>${vehicle.getId()}</td>
-                <td>${vehicle.getNameVehicle()}</td>
-                <td>${vehicle.getColor()}</td>
-                <td>${vehicle.getPrice()}</td>
-                <td>${vehicle.getYearManufactured()}</td>
-                <td>${vehicle.getIdProvince()}</td>
-                <td>${vehicle.getIdPerson()}</td>
+                <th>STT</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Price</th>
+                <th>YearManufactured</th>
+                <th>Id_Province</th>
+                <th>Id_Person</th>
+                <th>Type</th>
+                <th>Update</th>
+                <th>Delete</th>
+                <th>View</th>
             </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${vehicleList}" var="vehicle" varStatus="loop">
+                <tr>
+                    <td>${loop.count}</td>
+                    <td>${vehicle.getId()}</td>
+                    <td>${vehicle.getNameVehicle()}</td>
+                    <td>${vehicle.getColor()}</td>
+                    <td>${vehicle.getPrice()}</td>
+                    <td>${vehicle.getYearManufactured()}</td>
+                    <td>${vehicle.getIdProvince()}</td>
+                    <td>${vehicle.getIdPerson()}</td>
+                    <td>${vehicle.getTypeVehicle()}</td>
+                    <td>
+                            <form action="vehicle" method="get">
+                                <button class="btn btn-info" name="action" value="updateVehicle">
+                                        Update
+                                </button>
+                                <input type="hidden" name="id" value="${vehicle.getId()}">
+                            </form>
+                    </td>
+                    <td>
+                        <form action="vehicle" method="get">
+                            <button class="btn btn-danger" name="action" value="deleteVehicle">
+                                Delete
+                            </button>
+                            <input type="hidden" name="id" value="${vehicle.getId()}">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="vehicle" method="get">
+                            <button class="btn btn-primary" name="action" value="viewDetailVehicle">
+                                View Detail
+                            </button>
+                            <input type="hidden" name="id" value="${vehicle.getId()}">
+                        </form>
+                    </td>
+                </tr>
 
-        </c:forEach>
-        </tbody>
-    </table>
+            </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
+
+
 </div>
 </body>
 </html>

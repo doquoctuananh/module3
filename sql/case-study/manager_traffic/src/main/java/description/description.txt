@@ -1,0 +1,4 @@
+Quản lý xe cộ bao gồm
++Tỉnh(Province) sẽ quản lý xe đó thuộc tỉnh nào và quản lý con người của tỉnh đó.
++Con người (Person) thuộc tỉnh nào và có thể sở hữu nhiểu xe một lúc
++Xe(vehicle) chia làm hai phương tiện xe máy và xe ô tô thuộc tỉnh nào và thuộc người sở hữu nào

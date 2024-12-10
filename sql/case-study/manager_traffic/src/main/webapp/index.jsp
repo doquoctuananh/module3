@@ -23,12 +23,11 @@
     <button class="btn btn-default">
         <a href="/person">Person</a>
     </button>
-    <form action="vehicle" method="get">
-        <button class="btn btn-default" name="action">
-            Vehicle
-        </button>
-        <input type="hidden" name="typeVehicle" value="">
-    </form>
+
+    <button class="btn btn-default">
+        <a href="/vehicle">Vehicle</a>
+    </button>
+
 
 </div>
 </body>
