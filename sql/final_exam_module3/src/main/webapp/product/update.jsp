@@ -1,8 +1,16 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: Tuấn Anh
+  Date: 12/12/2024
+  Time: 7:17 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Title</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -15,10 +23,8 @@
     </style>
 </head>
 <body>
-
 <div class="container">
-        <a href="product" class="btn btn-default">Product</a>
-</div>
 
+</div>
 </body>
 </html>
