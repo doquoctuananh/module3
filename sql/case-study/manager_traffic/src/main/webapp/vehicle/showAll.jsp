@@ -110,12 +110,31 @@
                             </form>
                     </td>
                     <td>
-                        <form action="vehicle" method="get">
-                            <button class="btn btn-danger" name="action" value="deleteVehicle">
-                                Delete
-                            </button>
-                            <input type="hidden" name="id" value="${vehicle.getId()}">
-                        </form>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal_${vehicle.getId()}">Delete</button>
+
+                        <div class="modal fade" id="myModal_${vehicle.getId()}" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Delete Vehicle?</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Do you want to Delete?</p>
+                                        </div>
+                                        <div class="modal-footer">
+<%--                                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>--%>
+<%--                                            <form action="vehicle" method="get">--%>
+<%--                                                <button type="submit" class="btn btn-danger" name="action"--%>
+<%--                                                        value="deleteVehicle" data-dismiss="modal">Yes--%>
+<%--                                                </button>--%>
+<%--                                                <input type="hidden" name="id" value="${vehicle.getId()}">--%>
+<%--                                            </form>--%>
+                                            <a href="/vehicle?action=deleteVehicle&id=${vehicle.getId()}"class="btn btn-danger">Yes</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
                     </td>
                     <td>
                         <form action="vehicle" method="get">

@@ -24,9 +24,11 @@ public class ImplVehicleRepository implements IVehicleRepository {
             "where id=?";
     private static String sqlUpdateCar = "update car set numberSeats=? where id=?";
     private static String sqlUpdateMotor = "update motorbike set speed =? where id=?";
+
     private static String sqlDeleteCar = "delete from car where id=?";
     private static String sqlDeleteMotor = "delete from motorbike where id=?";
     private static String sqlDeleteAll = "delete from vehicle where id =?";
+
     private static String sqlViewCar = "select v.*,c.numberSeats from vehicle as v join car as c on v.id = c.id where v.id = ?";
     private static String sqlViewMotor = "select v.*,m.speed from vehicle as v join motorbike as m on v.id = m.id where v.id = ?";
 
